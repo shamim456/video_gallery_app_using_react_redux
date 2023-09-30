@@ -1,12 +1,15 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Video from "./pages/Video";
 
 function App() {
   return (
-    <div>
-      {/* <Home /> */}
-      <Video />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/video/:videoId" element={<Video />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
