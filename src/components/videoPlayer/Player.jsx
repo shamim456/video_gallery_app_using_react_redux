@@ -6,7 +6,7 @@ const Player = () => {
       <iframe
         width="100%"
         className="aspect-video"
-        src="https://www.youtube-nocookie.com/embed/6O4s7v28nlw"
+        src="https://www.youtube.com/embed/aDT2ITzVY_Y?si=TWPaHk7epMivWeNC"
         title="Some video title"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullscreen
