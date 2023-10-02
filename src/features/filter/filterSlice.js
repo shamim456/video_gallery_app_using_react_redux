@@ -19,11 +19,11 @@ const filterSlice = createSlice({
         state.tags.splice(indexToRemove, 1);
       }
     },
-    searched: (state, action) => {
+    search: (state, action) => {
       state.searched = action.payload;
     },
   },
 });
 
 export default filterSlice.reducer;
-export const { tagSelected, tagRemoved, searched } = filterSlice.actions;
+export const { tagSelected, tagRemoved, search } = filterSlice.actions;
