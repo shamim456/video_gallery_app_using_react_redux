@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Player from "../components/videoPlayer/Player";
 import Description from "../components/videoPlayer/Description";
-import VideoList from "../components/VideoList/RelatedVideoList";
+import RelatedVideo from "../components/VideoList/RelatedVideoList";
 import PublicLayout from "../layouts/PublicLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchVideo } from "../features/video/videoSlice";
@@ -15,8 +15,7 @@ const Video = () => {
     (state) => state.video
   );
 
-  const { link, title } = video || {};
-  console.log(video);
+  const { link, title, tags, id } = video || {};
 
   useEffect(() => {
     dispatch(fetchVideo(videoId));
@@ -39,7 +38,7 @@ const Video = () => {
           <Player link={link} title={title} />
           <Description video={video} />
         </div>
-        <VideoList />
+        <RelatedVideo tags={tags} id={id} />
       </div>
     );
 
