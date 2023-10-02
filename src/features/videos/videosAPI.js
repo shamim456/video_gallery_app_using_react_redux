@@ -1,11 +1,13 @@
 import axios from "../../utils/axios";
-export const getVideos = async () => {
-  const response = await axios.get("/videos");
+export const getVideos = async ({ tags, searched }) => {
+  let quieryString = "";
+  console.log(searched);
+  if (tags?.length > 0) {
+    quieryString += tags.map((tag) => `tags_like=${tag}`).join("&");
+  }
+  if (searched !== "") {
+    quieryString += `&q=${searched}`;
+  }
+  const response = await axios.get(`/videos/?${quieryString}`);
   return response.data;
 };
-
-// export const getVideos = async () => {
-//   const response = await fetch("http://localhost:9000/videos");
-//   const data = await response.json();
-//   return data;
-// };

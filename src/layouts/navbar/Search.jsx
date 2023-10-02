@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import searchImage from "../../assets/search.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { search } from "../../features/filter/filterSlice";
+import { useMatch, useNavigate } from "react-router-dom";
 
 const Search = () => {
   const dispatch = useDispatch();
   const { searched } = useSelector((state) => state.filter);
   const [searchInput, setSearchInput] = useState(searched);
 
+  const match = useMatch("/");
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(search(searchInput));
+    if (!match) {
+      navigate("/");
+    }
   };
   const handleInputChange = (e) => {
     setSearchInput(e.target.value);

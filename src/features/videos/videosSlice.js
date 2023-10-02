@@ -10,10 +10,13 @@ const INITIAL_STATE = {
 };
 
 // thunk function
-export const fetchVideos = createAsyncThunk("videos/fetchVideos", async () => {
-  let videos = await getVideos();
-  return videos;
-});
+export const fetchVideos = createAsyncThunk(
+  "videos/fetchVideos",
+  async ({ tags, searched }) => {
+    let videos = await getVideos({ tags, searched });
+    return videos;
+  }
+);
 
 const videosSlice = createSlice({
   name: "videos",
