@@ -1,6 +1,6 @@
 // import Success from "../ui/Success";
-import TextArea from "../ui/TextArea";
-import TextInput from "../ui/TextInput";
+import TextArea from "../UI/TextArea";
+import TextInput from "../UI/TextInput";
 
 export default function Form() {
   return (
