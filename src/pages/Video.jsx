@@ -1,35 +1,32 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useParams } from "react-router-dom";
+
 import Player from "../components/videoPlayer/Player";
 import Description from "../components/videoPlayer/Description";
-import RelatedVideo from "../components/VideoList/RelatedVideoList";
+// import RelatedVideo from "../components/VideoList/RelatedVideoList";
 import PublicLayout from "../layouts/PublicLayout";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchVideo } from "../features/video/videoSlice";
-import { useParams } from "react-router-dom";
-import Loading from "../components/UI/Loading";
+import Loading from "../components/UI/loaders/PlayerLoader";
+import Error from "../components/UI/Error";
+import { useGetVideoQuery } from "../features/api/apiSlice";
 
 const Video = () => {
   const { videoId } = useParams();
-  const dispatch = useDispatch();
-  const { video, isLoading, isError, error } = useSelector(
-    (state) => state.video
-  );
 
+  const {
+    data: video,
+    isLoading,
+    isError,
+    error,
+  } = useGetVideoQuery({ videoId });
   const { link, title, tags, id } = video || {};
-
-  useEffect(() => {
-    dispatch(fetchVideo(videoId));
-  }, [dispatch, videoId]);
-
+  console.log(video);
   let content;
 
   if (isLoading) content = <Loading />;
 
-  if (!isLoading && isError)
-    content = <div className="col-span-12">{error}</div>;
+  if (!isLoading && isError) content = <Error message={error} />;
 
-  if (!isLoading && !isError && !video.id)
-    content = <div className="col-span-12">{error}</div>;
+  if (!isLoading && !isError && !video.id) content = <Error message={error} />;
 
   if (!isLoading && !isError && video.id)
     content = (
@@ -38,7 +35,7 @@ const Video = () => {
           <Player link={link} title={title} />
           <Description video={video} />
         </div>
-        <RelatedVideo tags={tags} id={id} />
+        {/* <RelatedVideo tags={tags} id={id} /> */}
       </div>
     );
 

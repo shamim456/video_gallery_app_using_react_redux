@@ -1,5 +1,5 @@
 import React from "react";
-import LikeUnlike from "./LikeUnlike";
+// import LikeUnlike from "./LikeUnlike";
 
 const Description = ({ video = {} }) => {
   const { title, date, description } = video;
@@ -14,7 +14,7 @@ const Description = ({ video = {} }) => {
         </h2>
 
         {/* <!-- like/unlike --> */}
-        <LikeUnlike />
+        {/* <LikeUnlike /> */}
       </div>
 
       <div className="mt-4 text-sm text-[#334155] dark:text-slate-400">

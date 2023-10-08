@@ -1,19 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Video from "./Video";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchVideos } from "../../features/videos/videosSlice";
 import Loading from "../UI/Loading";
+import { useGetVideosQuery } from "../../features/api/apiSlice";
 
 const VideoGrid = () => {
-  const dispatch = useDispatch();
-  const { videos, isLoading, isError, error } = useSelector(
-    (state) => state.videos
-  );
-  const { tags, searched } = useSelector((state) => state.filter);
-  useEffect(() => {
-    dispatch(fetchVideos({ tags, searched }));
-  }, [dispatch, searched, tags]);
-
+  const { data: videos, isError, isLoading, error } = useGetVideosQuery();
+  console.log(videos);
   // decide what to render
   let content;
 
