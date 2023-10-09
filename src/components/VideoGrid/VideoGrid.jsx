@@ -5,7 +5,6 @@ import { useGetVideosQuery } from "../../features/api/apiSlice";
 
 const VideoGrid = () => {
   const { data: videos, isError, isLoading, error } = useGetVideosQuery();
-  console.log(videos);
   // decide what to render
   let content;
 

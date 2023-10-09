@@ -10,6 +10,12 @@ const Navbar = () => {
         <Link to="/">
           <img className="h-10 rounded-full" src={logo} alt="logo" />
         </Link>
+        <Link
+          to="/videos/add"
+          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-0 focus:ring-offset-0 focus:ring-indigo-500"
+        >
+          + Add Video
+        </Link>
         {/* <Search /> */}
       </div>
     </nav>

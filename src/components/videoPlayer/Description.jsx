@@ -33,9 +33,11 @@ const Description = ({ video = {} }) => {
             <div className="shrink-0">
               <img className="block w-5" src={deleteImage} alt="Delete" />
             </div>
-            <div className="text-sm leading-[1.7142857] text-slate-600 cursor-pointer">
-              Delete
-            </div>
+            <Link to={`/videos/edit/${id}`}>
+              <div className="text-sm leading-[1.7142857] text-slate-600 cursor-pointer">
+                Delete
+              </div>
+            </Link>
           </div>
         </div>
       </div>

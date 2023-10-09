@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import Player from "../components/videoPlayer/Player";
 import Description from "../components/videoPlayer/Description";
-// import RelatedVideo from "../components/VideoList/RelatedVideoList";
+import RelatedVideo from "../components/VideoList/RelatedVideoList";
 import PublicLayout from "../layouts/PublicLayout";
 import Loading from "../components/UI/loaders/PlayerLoader";
 import Error from "../components/UI/Error";
@@ -12,14 +12,8 @@ import { useGetVideoQuery } from "../features/api/apiSlice";
 const Video = () => {
   const { videoId } = useParams();
 
-  const {
-    data: video,
-    isLoading,
-    isError,
-    error,
-  } = useGetVideoQuery({ videoId });
+  const { data: video, isLoading, isError, error } = useGetVideoQuery(videoId);
   const { link, title, tags, id } = video || {};
-  console.log(video);
   let content;
 
   if (isLoading) content = <Loading />;
@@ -35,7 +29,7 @@ const Video = () => {
           <Player link={link} title={title} />
           <Description video={video} />
         </div>
-        {/* <RelatedVideo tags={tags} id={id} /> */}
+        <RelatedVideo title={title} tags={tags} id={id} />
       </div>
     );
 
