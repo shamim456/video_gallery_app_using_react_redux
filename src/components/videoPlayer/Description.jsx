@@ -1,11 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 // import LikeUnlike from "./LikeUnlike";
 import editImage from "../../assets/edit.svg";
 import deleteImage from "../../assets/delete.svg";
+import { useDeleteVideoMutation } from "../../features/api/apiSlice";
 
 const Description = ({ video = {} }) => {
   const { title, date, description, id } = video;
+  const [deleteVideo, { isLoading, isError, error, isSuccess }] =
+    useDeleteVideoMutation();
+  const navigate = useNavigate();
+
+  const handleDelete = () => {
+    deleteVideo(id);
+  };
+
+  useEffect(() => {
+    if (isSuccess) navigate("/");
+  }, [isSuccess, navigate]);
+
   return (
     <div>
       <h1 className="text-lg font-semibold tracking-tight text-slate-800">
@@ -29,15 +42,14 @@ const Description = ({ video = {} }) => {
               </span>
             </Link>
           </div>
-          <div className="flex gap-1">
+          <div className="flex gap-1" onClick={handleDelete}>
             <div className="shrink-0">
               <img className="block w-5" src={deleteImage} alt="Delete" />
             </div>
-            <Link to={`/videos/edit/${id}`}>
-              <div className="text-sm leading-[1.7142857] text-slate-600 cursor-pointer">
-                Delete
-              </div>
-            </Link>
+
+            <div className="text-sm leading-[1.7142857] text-slate-600 cursor-pointer">
+              Delete
+            </div>
           </div>
         </div>
       </div>
